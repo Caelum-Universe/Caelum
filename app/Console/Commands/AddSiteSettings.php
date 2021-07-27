@@ -106,6 +106,19 @@ class AddSiteSettings extends Command
         # Genetics
         $this->addSiteSetting('genome_default_visibility', 0, '0: Genomes are hidden by default. 1: Only the most dominant genes are visible by default. 2: Genomes are fully visible by default.');
 
+        if(!DB::table('site_settings')->where('key', 'character_title_display')->exists()) {
+            DB::table('site_settings')->insert([
+                [
+                    'key' => 'character_title_display',
+                    'value' => 0,
+                    'description' => '0: Characters\' titles only display in their image info. 1: Characters\'s titles display alongside their category, species, rarity.'
+                ]
+
+            ]);
+            $this->info("Added:   character_title_display / Default: 0");
+        }
+        else $this->line("Skipped: character_title_display");
+
         $this->line("\nSite settings up to date!");
 
     }
