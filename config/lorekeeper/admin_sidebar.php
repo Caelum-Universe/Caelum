@@ -213,6 +213,10 @@ return [
                 'name' => 'Recipes',
                 'url' => 'admin/data/recipes'
             ],
+            [
+                'name' => 'Forums',
+                'url' => 'admin/forums'
+            ]
         ]
     ],
     'World.Expanded' => [
