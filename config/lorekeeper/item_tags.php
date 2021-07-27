@@ -36,4 +36,10 @@ return [
         'text_color' => '#ffffff',
         'background_color' => '#6D18A7'
     ],
+    
+    'raritybox' => [
+        'name' => 'Rarity Box',
+        'text_color' => '#ffffff',
+        'background_color' => '#58507D'
+    ],
 ];
