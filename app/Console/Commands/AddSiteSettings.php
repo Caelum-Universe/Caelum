@@ -118,6 +118,19 @@ class AddSiteSettings extends Command
             $this->info("Added:   character_title_display / Default: 0");
         }
         else $this->line("Skipped: character_title_display");
+        
+        if(!DB::table('site_settings')->where('key', 'claymore_cooldown')->exists()) {
+            DB::table('site_settings')->insert([
+                [
+                    'key' => 'claymore_cooldown',
+                    'value' => 0,
+                    'description' => 'Number of days to add to the cooldown timer when a pet/weapon/gear is attached.'
+                ]
+
+            ]);
+            $this->info("Added:   claymore_cooldown / Default: 0");
+        }
+        else $this->line("Skipped: claymore_cooldown");
 
         $this->line("\nSite settings up to date!");
 

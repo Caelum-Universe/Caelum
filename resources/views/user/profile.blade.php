@@ -19,6 +19,7 @@
     @if($user->settings->is_fto)
         <span class="badge badge-success float-right" data-toggle="tooltip" title="This user has not owned any characters from this world before.">FTO</span>
     @endif
+    <span class="badge badge-info float-right text-white mx-1" data-toggle="tooltip" title="Current user level. Checkout the level area for more info.">Lvl: {{ $user->level->current_level }}</span>
 </h1>
 <div class="mb-1">
     <div class="row">
@@ -96,6 +97,55 @@
                 @endif
             </div>
             <div class="text-right"><a href="{{ $user->url.'/inventory' }}">View all...</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="card-deck mb-4 profile-assets">
+    <div class="card profile-currencies profile-assets-card">
+        <div class="card-body text-center">
+            <h5 class="card-title">Pets</h5>
+            <div class="card-body">
+                @if(count($pets))
+                    <div class="row">
+                        @foreach($pets as $pet)
+                            <div class="col-md-3 col-6 profile-inventory-item">
+                                @if($pet->imageUrl)
+                                <img style="width: 100%;" src="{{ $pet->imageUrl }}" data-toggle="tooltip" title="{{ $pet->name }}" />
+                                @else
+                                    <p>{{ $pet->name }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                @else 
+                    <div>No pets owned.</div>
+                @endif
+            </div>
+            <div class="text-right"><a href="{{ $user->url.'/pets' }}">View all...</a></div>
+        </div>
+    </div>
+    <div class="card profile-inventory profile-assets-card">
+        <div class="card-body text-center">
+            <h5 class="card-title">Armoury</h5>
+            <div class="card-body">
+                @if(count($armours))
+                    <div class="row">
+                        @foreach($armours as $armour)
+                            <div class="col-md-3 col-6 profile-inventory-item">
+                                @if($armour->imageUrl)
+                                <img src="{{ $armour->imageUrl }}" data-toggle="tooltip" title="{{ $armour->name }}" />
+                                @else
+                                    <p>{{ $armour->name }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                @else 
+                    <div>No weapons or gear owned.</div>
+                @endif
+            </div>
+            <div class="text-right"><a href="{{ $user->url.'/armoury' }}">View all...</a></div>
         </div>
     </div>
 </div>

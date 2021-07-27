@@ -11,6 +11,7 @@ use Settings;
 use App\Models\Character\Character;
 use App\Models\Character\CharacterCategory;
 use App\Models\Character\CharacterLineageBlacklist;
+use App\Models\Character\CharacterClass;
 use App\Models\Rarity;
 use App\Models\Character\CharacterTitle;
 use App\Models\User\User;
@@ -20,6 +21,7 @@ use App\Models\Feature\Feature;
 use App\Models\Character\CharacterTransfer;
 use App\Models\Trade;
 use App\Models\User\UserItem;
+use App\Models\Stats\Character\Stat;
 
 use App\Services\CharacterManager;
 use App\Services\CurrencyManager;
@@ -70,7 +72,8 @@ class CharacterController extends Controller
             'subtypes' => ['0' => 'Pick a Species First'],
             'genes' => ['0' => 'Select Gene Group'] + Loci::orderBy('sort', 'desc')->pluck('name', 'id')->toArray(),
             'features' => Feature::orderBy('name')->pluck('name', 'id')->toArray(),
-            'isMyo' => false
+            'isMyo' => false,
+            'stats' => Stat::orderBy('name')->get(),
         ]);
     }
 
@@ -89,7 +92,8 @@ class CharacterController extends Controller
             'subtypes' => ['0' => 'Pick a Species First'],
             'genes' => ['0' => 'Select Gene Group'] + Loci::orderBy('sort', 'desc')->pluck('name', 'id')->toArray(),
             'features' => Feature::orderBy('name')->pluck('name', 'id')->toArray(),
-            'isMyo' => true
+            'isMyo' => true,
+            'stats' => Stat::orderBy('name')->get(),
         ]);
     }
 
@@ -160,7 +164,7 @@ class CharacterController extends Controller
             'species_id', 'subtype_id', 'rarity_id', 'feature_id', 'feature_data', 'title_id', 'title_data',
             'gene_id', 'gene_allele_id', 'gene_numeric_data', 'gene_gradient_data',
             'genome_visibility',
-            'image', 'thumbnail', 'image_description'
+            'image', 'thumbnail', 'image_description', 'stats'
         ]);
         if ($character = $service->createCharacter($data, Auth::user())) {
             flash('Character created successfully.')->success();
@@ -209,7 +213,7 @@ class CharacterController extends Controller
             'species_id', 'subtype_id', 'rarity_id', 'feature_id', 'feature_data',
             'gene_id', 'gene_allele_id', 'gene_numeric_data', 'gene_gradient_data',
             'genome_visibility',
-            'image', 'thumbnail'
+            'image', 'thumbnail', 'stats'
         ]);
         if ($character = $service->createCharacter($data, Auth::user(), true)) {
             flash('MYO slot created successfully.')->success();
@@ -1049,5 +1053,39 @@ class CharacterController extends Controller
         return view('admin.masterlist.myo_index', [
             'slots' => Character::myo(1)->orderBy('id', 'DESC')->paginate(30),
         ]);
+    }
+
+    /************************************************************************************
+     * CLAYMORE
+     ************************************************************************************/
+    
+    /**
+     * Changes / assigns the character class
+     * @param  \Illuminate\Http\Request       $request
+     * @param  int                            $id
+     * @param App\Services\CharacterManager  $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getClassModal($id)
+    {
+        $this->character = Character::find($id);
+        if(!$this->character) abort(404);
+        return view('admin.claymores.classes._modal', [
+            'classes' => ['none' => 'No Class'] + CharacterClass::orderBy('name', 'DESC')->pluck('name', 'id')->toArray(),
+            'character' => $this->character
+        ]);
+    }
+
+    public function postClassModal($id, Request $request, CharacterManager $service)
+    {
+        $this->character = Character::find($id);
+        if(!$this->character) abort(404);
+        if($service->editClass($request->only(['class_id']), $this->character, Auth::user())) {
+            flash('Character class editted successfully.')->success();
+        }
+        else {
+            foreach($service->errors()->getMessages()['error'] as $error) flash($error)->error();
+        }
+        return redirect()->back();
     }
 }

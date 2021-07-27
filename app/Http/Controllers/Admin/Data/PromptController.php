@@ -9,10 +9,14 @@ use Auth;
 use App\Models\Prompt\PromptCategory;
 use App\Models\Prompt\Prompt;
 use App\Models\Item\Item;
+use App\Models\Skill\Skill;
 use App\Models\Currency\Currency;
 use App\Models\Loot\LootTable;
 use App\Models\Raffle\Raffle;
 use App\Models\Recipe\Recipe;
+use App\Models\Pet\Pet;
+use App\Models\Claymore\Gear;
+use App\Models\Claymore\Weapon;
 
 use App\Services\PromptService;
 
@@ -185,10 +189,14 @@ class PromptController extends Controller
             'categories' => ['none' => 'No category'] + PromptCategory::orderBy('sort', 'DESC')->pluck('name', 'id')->toArray(),
             'items' => Item::orderBy('name')->pluck('name', 'id'),
             'currencies' => Currency::where('is_user_owned', 1)->orderBy('name')->pluck('name', 'id'),
+            'pets' => Pet::orderBy('name')->pluck('name', 'id'),
+            'gears' => Gear::orderBy('name')->pluck('name', 'id'),
+            'weapons' => Weapon::orderBy('name')->pluck('name', 'id'),
             'tables' => LootTable::orderBy('name')->pluck('name', 'id'),
             'raffles' => Raffle::where('rolled_at', null)->where('is_active', 1)->orderBy('name')->pluck('name', 'id'),
             'recipes'=> Recipe::orderBy('name')->pluck('name', 'id'),
-            'limit_periods' => [null => 'None', 'Hour' => 'Hour', 'Day' => 'Day', 'Week' => 'Week', 'Month' => 'Month', 'Year' => 'Year']
+            'limit_periods' => [null => 'None', 'Hour' => 'Hour', 'Day' => 'Day', 'Week' => 'Week', 'Month' => 'Month', 'Year' => 'Year'],
+            'skills' => Skill::pluck('name', 'id')->toArray()
         ]);
     }
 
@@ -208,10 +216,14 @@ class PromptController extends Controller
             'categories' => ['none' => 'No category'] + PromptCategory::orderBy('sort', 'DESC')->pluck('name', 'id')->toArray(),
             'items' => Item::orderBy('name')->pluck('name', 'id'),
             'currencies' => Currency::where('is_user_owned', 1)->orderBy('name')->pluck('name', 'id'),
+            'pets' => Pet::orderBy('name')->pluck('name', 'id'),
+            'gears' => Gear::orderBy('name')->pluck('name', 'id'),
+            'weapons' => Weapon::orderBy('name')->pluck('name', 'id'),
             'tables' => LootTable::orderBy('name')->pluck('name', 'id'),
             'raffles' => Raffle::where('rolled_at', null)->where('is_active', 1)->orderBy('name')->pluck('name', 'id'),
             'recipes'=> Recipe::orderBy('name')->pluck('name', 'id'),
-            'limit_periods' => [null => 'None', 'Hour' => 'Hour', 'Day' => 'Day', 'Week' => 'Week', 'Month' => 'Month', 'Year' => 'Year']
+            'limit_periods' => [null => 'None', 'Hour' => 'Hour', 'Day' => 'Day', 'Week' => 'Week', 'Month' => 'Month', 'Year' => 'Year'],
+            'skills' => Skill::pluck('name', 'id')->toArray()
         ]);
     }
 
@@ -228,7 +240,8 @@ class PromptController extends Controller
         $id ? $request->validate(Prompt::$updateRules) : $request->validate(Prompt::$createRules);
         $data = $request->only([
             'name', 'prompt_category_id', 'summary', 'description', 'start_at', 'end_at', 'hide_before_start', 'hide_after_end', 'is_active', 'rewardable_type', 'rewardable_id', 'quantity', 'image', 'remove_image', 'prefix', 'hide_submissions',
-            'limit', 'limit_period', 'limit_character'
+            'limit', 'limit_period', 'limit_character',
+            chara_exp', 'chara_points', 'user_exp', 'user_points', 'level_req', 'level_check', 'skill_id', 'skill_quantity'
         ]);
         if($id && $service->updatePrompt(Prompt::find($id), $data, Auth::user())) {
             flash('Prompt updated successfully.')->success();
