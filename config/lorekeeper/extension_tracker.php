@@ -1,14 +1,5 @@
 <?php
 return [
-    
-    'character_genetic_data' => [
-        'key' => 'character_genetic_data',
-        'wiki_key' => 'Character_Genetic_Data',
-        'creators' => json_encode([
-            'Pure09' => 'https://github.com/deep-ci/',
-        ]),
-        'version' => '1.1.0',
-    ],
 
     // FORMAT EXAMPLE.
     //
@@ -20,6 +11,15 @@ return [
     //     ]),
     //     'version' => '1.0.0',
     // ],
+
+    'character_genetic_data' => [
+        'key' => 'character_genetic_data',
+        'wiki_key' => 'Character_Genetic_Data',
+        'creators' => json_encode([
+            'Pure09' => 'https://github.com/deep-ci/',
+        ]),
+        'version' => '1.1.0',
+    ],
 
     'crafting_system' => [
         'key' => 'crafting_system',
@@ -37,6 +37,14 @@ return [
         'wiki_key' => 'Character_Profile_Custom_Values',
         'creators' => json_encode([
             'Pure09' => 'https://github.com/deep-ci/',
+        ]),
+    ],
+    
+    'is_online' => [
+        'key' => 'is_online',
+        'wiki_key' => 'Is_Online',
+        'creators' => json_encode([
+            'Uri' => 'https://github.com/preimpression/',
         ]),
         'version' => '1.0.0',
     ],
