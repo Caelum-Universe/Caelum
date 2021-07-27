@@ -38,7 +38,7 @@ return [
         'creators' => json_encode([
             'Pure09' => 'https://github.com/deep-ci/',
         ]),
-        'version' => '1.0.0',
+        'version' => '1.0.1',
     ],
     
     'is_online' => [
@@ -47,7 +47,7 @@ return [
         'creators' => json_encode([
             'Uri' => 'https://github.com/preimpression/',
         ]),
-        'version' => '1.0.0',
+        'version' => '1.0.1',
     ],
 
     'theme_manager' => [
