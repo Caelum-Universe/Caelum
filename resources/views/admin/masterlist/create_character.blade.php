@@ -210,7 +210,7 @@
 
     <h3>Lineage</h3>
 
-    <div class="alert alert-info">Enter a sire and dam to autogenerate ancestry or enter ancestors manually. Do not enter anything if there are no ancestors in that slot.</div>
+    <div class="alert alert-info">Enter the parents to autogenerate ancestry or enter ancestors manually. Do not enter anything if there are no ancestors in that slot.</div>
 
     <?php
         // Reduce errors and repetition
@@ -232,20 +232,20 @@
         ];
         // Human-readable names for the things
         $j = [
-            "Sire",
-            "Dam",
-            "Sire's Sire",
-            "Sire's Sire's Sire",
-            "Sire's Sire's Dam",
-            "Sire's Dam",
-            "Sire's Dam's Sire",
-            "Sire's Dam's Dam",
-            "Dam's Sire",
-            "Dam's Sire's Sire",
-            "Dam's Sire's Dam",
-            "Dam's Dam",
-            "Dam's Dam's Sire",
-            "Dam's Dam's Dam",
+            "Parent 1",
+            "Parent 2",
+            "Grandparent 1",
+            "Great Grandparent 1",
+            "Great Grandparent 2",
+            "Grandparent 2",
+            "Great Grandparent 3",
+            "Great Grandparent 4",
+            "Grandparent 3",
+            "Great Grandparent 5",
+            "Great Grandparent 6",
+            "Grandparent 4",
+            "Great Grandparent 7",
+            "Great Grandparent 8",
         ];
         ?>
     <div class="row">
@@ -272,7 +272,7 @@
                 <div class="form-check mb-4">
                     <input class="form-check-input" type="checkbox" value="generate" name="generate_ancestors" id="generate_ancestors" checked>
                     <label class="form-check-label" for="generate_ancestors">
-                        automatically fill in ancestors from the parent(s)/grandparent(s) lineages?
+                        Automatically fill in ancestors from the parent(s)/grandparent(s) lineages?
                     </label>
                 </div>
 

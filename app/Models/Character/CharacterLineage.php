@@ -49,71 +49,85 @@ class CharacterLineage extends Model
 
     public function sire()
     {
+        // Parent 1
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function sire_sire()
     {
+        // Grandparent 1
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function sire_sire_sire()
     {
+        // Great Grandparent 1
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function sire_sire_dam()
     {
+        // Great Grandparent 2
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function sire_dam()
     {
+        // Grandparent 2
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function sire_dam_sire()
     {
+        // Great Grandparent 3
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function sire_dam_dam()
     {
+        // Great Grandparent 4
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function dam()
     {
+        // Parent 2
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function dam_sire()
     {
+        // Grandparent 3
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function dam_sire_sire()
     {
+        // Great Grandparent 5
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function dam_sire_dam()
     {
+        // Great Grandparent 6
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function dam_dam()
     {
+        // Grandparent 4
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function dam_dam_sire()
     {
+        // Great Grandparent 7
         return $this->belongsTo('App\Models\Character\Character');
     }
 
     public function dam_dam_dam()
     {
+        // Great Grandparent 8
         return $this->belongsTo('App\Models\Character\Character');
     }
 

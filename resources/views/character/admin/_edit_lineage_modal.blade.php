@@ -21,20 +21,20 @@
         ];
         // Human-readable names for the things
         $j = [
-            "Sire",
-            "Sire's Sire",
-            "Sire's Sire's Sire",
-            "Sire's Sire's Dam",
-            "Sire's Dam",
-            "Sire's Dam's Sire",
-            "Sire's Dam's Dam",
-            "Dam",
-            "Dam's Sire",
-            "Dam's Sire's Sire",
-            "Dam's Sire's Dam",
-            "Dam's Dam",
-            "Dam's Dam's Sire",
-            "Dam's Dam's Dam",
+            "Parent 1",
+            "Parent 1's Parent 1",
+            "Parent 1's Parent 1's Parent 1",
+            "Parent 1's Parent 1's Parent 2",
+            "Parent 1's Parent 2",
+            "Parent 1's Parent 2's Parent 1",
+            "Parent 1's Parent 2's Parent 2",
+            "Parent 2",
+            "Parent 2's Parent 1",
+            "Parent 2's Parent 1's Parent 1",
+            "Parent 2's Parent 1's Parent 2",
+            "Parent 2's Parent 2",
+            "Parent 2's Parent 2's Parent 1",
+            "Parent 2's Parent 2's Parent 2",
         ];
         ?>
     <div class="row">
@@ -63,7 +63,7 @@
     <div class="form-check">
         <input class="form-check-input" type="checkbox" name="generate_ancestors" value="true" id="generate_ancestors">
         <label class="form-check-label" for="generate_ancestors">
-            autofill lineage based on the currently input ancestors?
+            Autofill lineage based on the currently input ancestors?
         </label>
     </div>
 
@@ -71,7 +71,7 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" name="update_descendants" value="true" id="update_descendants">
             <label class="form-check-label" for="update_descendants">
-                find all the descendants of this character and update their lineages with these changes?
+                Find all the descendants of this character and update their lineages with these changes?
             </label>
         </div>
     @endif

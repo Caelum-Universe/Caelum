@@ -324,6 +324,7 @@ class GeneticsController extends Controller
      */
     public function getPossibleChildGenomes(Request $request)
     {
+        // Sire = Parent 1, Dam = Parent 2, etc.
         $sire = Character::where('id', $request->input('sire'))->where('is_myo_slot', false)->first();
         if (!$sire) abort(404);
         if (!$sire->genomes) abort(404);
