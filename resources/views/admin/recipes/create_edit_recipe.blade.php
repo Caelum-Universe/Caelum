@@ -48,7 +48,11 @@
     </div>
 
     <div class="br-form-group mb-1" style="display: none">
+<<<<<<< HEAD
         @include('widgets._recipe_limit_select', ['limits' => $recipe->limits, 'showRecipes' => true])
+=======
+        @include('widgets._recipe_limit_select', ['limits' => $recipe->limits, 'showRecipes' => false ])
+>>>>>>> 78c93abf2003af671eb8d1638c214dcfaad19029
     </div>
 
 <h3>Recipe Ingredients</h3>
@@ -86,7 +90,7 @@
 @include('js._recipe_reward_js')
 @include('js._recipe_ingredient_js')
 <script>
-$( document ).ready(function() {    
+$( document ).ready(function() {
     $('.delete-recipe-button').on('click', function(e) {
         e.preventDefault();
         loadModal("{{ url('admin/data/recipes/delete') }}/{{ $recipe->id }}", 'Delete Recipe');
@@ -98,6 +102,6 @@ $( document ).ready(function() {
             })
         $('.br-form-group').css('display',$('.is-limited-class').prop('checked') ? 'block' : 'none')
 });
-    
+
 </script>
 @endsection
