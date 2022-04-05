@@ -1,7 +1,7 @@
 <div>
 @php
     $button = "";
-    if (Auth::user() && Auth::user()->hasPower('manage-characters') && Auth::user()->hasPower('view-genomes')) {
+    if (Auth::user() && Auth::user()->hasPower('manage-characters')) {
         $button .= "<a href=\"#\" class=\"btn btn-link btn-sm ";
         if($genome)
             $button .= "edit-genome\" data-genome-id=\"". $genome->id ."\"><i class=\"fas fa-cog\"";
@@ -18,7 +18,7 @@
 @else
     @php
         $visible = 0;
-        if(Auth::user() && Auth::user()->hasPower('view-genomes')) $visible = 2;
+        if(Auth::user()) $visible = 2;
         else if ($genome->visibility_level) $visible = $genome->visibility_level;
         else $visible = Settings::get('genome_default_visibility');
     @endphp
@@ -51,7 +51,7 @@
                 }
                 echo('</div>');
             }
-            if(Auth::user() && $genome->visibility_level != 2 && Auth::user()->hasPower('view-genomes'))
+            if(Auth::user() && $genome->visibility_level != 2)
                 echo add_help("This character's genome is either fully or partially hidden. You can only view its details because of your rank.");
             echo isset($buttons) ? "" : $button;
         @endphp
