@@ -182,7 +182,7 @@ class Character extends Model
     /**
      * Get character level.
      */
-    public function level() 
+    public function level()
     {
         return $this->hasOne('App\Models\Stats\Character\CharaLevels');
     }
@@ -190,7 +190,7 @@ class Character extends Model
     /**
      * Get characters stats.
      */
-    public function stats() 
+    public function stats()
     {
         return $this->hasMany('App\Models\Stats\Character\CharacterStat');
     }
@@ -239,7 +239,7 @@ class Character extends Model
     {
         return $this->hasMany('App\Models\User\UserPet', 'chara_id');
     }
-    
+
     public function gear()
     {
         return $this->hasMany('App\Models\User\UserGear', 'character_id');
@@ -273,7 +273,7 @@ class Character extends Model
     {
         return $this->hasMany('App\Models\Character\CharacterGenome', 'character_id');
     }
-    
+
     /**
      * Get the lineage of the character.
      */
@@ -282,7 +282,7 @@ class Character extends Model
         return $this->hasOne('App\Models\Character\CharacterLineage', 'character_id');
     }
 
-    /** 
+    /**
      * Get the character's class
      */
     public function class()
@@ -290,7 +290,7 @@ class Character extends Model
         return $this->belongsTo('App\Models\Character\CharacterClass', 'class_id');
     }
 
-    /** 
+    /**
      * Get the character's skills.
      */
     public function skills()
@@ -733,8 +733,7 @@ class Character extends Model
      */
     public function getSubmissions()
     {
-        $first = Submission::with('user.rank')->with('prompt')->where('status', 'Approved')->where('focus_chara_id', $this->id)->pluck('id');
-        return Submission::with('user.rank')->with('prompt')->where('status', 'Approved')->whereIn('id', SubmissionCharacter::where('character_id', $this->id)->pluck('submission_id')->union($first)->toArray())->paginate(30);
+        return Submission::with('user.rank')->with('prompt')->where('status', 'Approved')->whereIn('id', SubmissionCharacter::where('character_id', $this->id)->pluck('submission_id')->toArray())->paginate(30);
 
         // Untested
         //$character = $this;
