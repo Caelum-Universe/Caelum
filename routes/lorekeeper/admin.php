@@ -332,6 +332,9 @@ Route::group(['prefix' => 'data', 'namespace' => 'Data', 'middleware' => 'power:
     Route::post('skill-categories/delete/{id}', 'SkillController@postDeleteSkillCategory');
 });
 
+});
+
+
 # PAGES
 Route::group(['prefix' => 'pages', 'middleware' => 'power:edit_pages'], function() {
 
@@ -426,6 +429,7 @@ Route::group(['prefix' => 'grants', 'namespace' => 'Users', 'middleware' => 'pow
 
     Route::get('recipes', 'GrantController@getRecipes');
     Route::post('recipes', 'GrantController@postRecipes');
+    Route::get('item-search', 'GrantController@getItemSearch');
 });
 
 
@@ -517,6 +521,10 @@ Route::group(['prefix' => 'character', 'namespace' => 'Characters', 'middleware'
     # LINEAGE
     Route::get('{slug}/lineage', 'CharacterLineageController@getEditCharacterLineage');
     Route::post('{slug}/lineage', 'CharacterLineageController@postEditCharacterLineage');
+    Route::get('{slug}/breeding-permissions/{id}/use', 'CharacterController@getUseBreedingPermission')->where(['id' => '[0-9]+']);
+    Route::post('{slug}/breeding-permissions/{id}/use', 'CharacterController@postUseBreedingPermission')->where(['id' => '[0-9]+']);
+
+    Route::post('{slug}/transfer', 'CharacterController@postTransfer');
 });
 // Might rewrite these parts eventually so there's less code duplication...
 Route::group(['prefix' => 'myo', 'namespace' => 'Characters', 'middleware' => 'power:manage_characters'], function() {
@@ -857,3 +865,4 @@ Route::group(['prefix' => 'character-classes', 'namespace' => 'Claymores', 'midd
     Route::post('delete/{id}', 'CharacterClassController@postDeleteCharacterClass');
     Route::post('sort', 'CharacterClassController@postSortCharacterClass');
 });
+Route::get('{type}/{status}', 'DesignController@getDesignIndex')->where('type', 'myo-approvals|design-approvals')->where('status', 'pending|approved|rejected');

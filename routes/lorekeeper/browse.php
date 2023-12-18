@@ -57,12 +57,14 @@ Route::group(['prefix' => 'user', 'namespace' => 'Users'], function() {
     Route::get('{name}/characters', 'UserController@getUserCharacters');
     Route::get('{name}/sublist/{key}', 'UserController@getUserSublist');
     Route::get('{name}/myos', 'UserController@getUserMyoSlots');
+    Route::get('{name}/breeding-permissions', 'UserController@getUserBreedingPermissions');
     Route::get('{name}/inventory', 'UserController@getUserInventory');
     Route::get('{name}/pets', 'UserController@getUserPets');
     Route::get('{name}/bank', 'UserController@getUserBank');
     Route::get('{name}/level', 'UserController@getUserLevel');
     Route::get('{name}/armoury', 'UserController@getUserArmoury');
     
+
     Route::get('{name}/currency-logs', 'UserController@getUserCurrencyLogs');
     Route::get('{name}/item-logs', 'UserController@getUserItemLogs');
     Route::get('{name}/pet-logs', 'UserController@getUserPetLogs');
@@ -104,6 +106,8 @@ Route::group(['prefix' => 'character', 'namespace' => 'Characters'], function() 
     Route::get('{slug}/children', 'CharacterLineageController@getCharacterChildren');
     Route::get('{slug}/grandchildren', 'CharacterLineageController@getCharacterGrandChildren');
     Route::get('{slug}/great-grandchildren', 'CharacterLineageController@getCharacterGreatGrandChildren');
+
+    Route::get('{slug}/breeding-permissions', 'CharacterController@getCharacterBreedingPermissions');
 });
 Route::group(['prefix' => 'myo', 'namespace' => 'Characters'], function() {
     Route::get('{id}', 'MyoController@getCharacter');
