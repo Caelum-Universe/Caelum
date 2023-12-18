@@ -11,6 +11,7 @@
         <div class="card mb-4">
             <div class="card-body text-center">
                 <img src="{{ asset('images/characters.png') }}" />
+                <img src="{{ asset('images/characters.png') }}" alt="Characters" />
                 <h5 class="card-title">Characters</h5>
             </div>
             <ul class="list-group list-group-flush">
@@ -20,19 +21,24 @@
                 <li class="list-group-item"><a href="{{ url('world/trait-categories') }}">Trait Categories</a></li>
                 <li class="list-group-item"><a href="{{ url('world/traits') }}">All Traits</a></li>
                 <li class="list-group-item"><a href="{{ url('world/character-categories') }}">Character Categories</a></li>
+<<<<<<< .merge_file_hzIMdf
                 <li class="list-group-item"><a href="{{ url('world/character-classes') }}">Character Classes</a></li>
+=======
             </ul>
-        </div>
-    </div>
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-body text-center">
+<<<<<<< .merge_file_hzIMdf
                 <img src="{{ asset('images/inventory.png') }}" />
+=======
+                <img src="{{ asset('images/inventory.png') }}" alt="Items" />
+>>>>>>> .merge_file_1SqlLO
                 <h5 class="card-title">Items</h5>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href="{{ url('world/item-categories') }}">Item Categories</a></li>
                 <li class="list-group-item"><a href="{{ url('world/items') }}">All Items</a></li>
+<<<<<<< .merge_file_hzIMdf
                 <li class="list-group-item"><a href="{{ url('world/skill-categories') }}">Skill Categories</a></li>
                 <li class="list-group-item"><a href="{{ url('world/skills') }}">All Skills</a></li>
                 <li class="list-group-item"><a href="{{ url('world/currencies') }}">Currencies</a></li>
@@ -43,6 +49,9 @@
                 <li class="list-group-item"><a href="{{ url('world/weapons') }}">All Weapons</a></li>
                 <li class="list-group-item"><a href="{{ url('world/gear-categories') }}">Gear Categories</a></li>
                 <li class="list-group-item"><a href="{{ url('world/gear') }}">All Gear</a></li>
+=======
+                <li class="list-group-item"><a href="{{ url('world/currencies') }}">Currencies</a></li>
+>>>>>>> .merge_file_1SqlLO
             </ul>
         </div>
     </div>
