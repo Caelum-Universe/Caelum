@@ -48,7 +48,11 @@
     </div>
 
     <div class="br-form-group mb-1" style="display: none">
+<<<<<<< HEAD
+        @include('widgets._recipe_limit_select', ['limits' => $recipe->limits, 'showRecipes' => true])
+=======
         @include('widgets._recipe_limit_select', ['limits' => $recipe->limits, 'showRecipes' => false ])
+>>>>>>> 78c93abf2003af671eb8d1638c214dcfaad19029
     </div>
 
 <h3>Recipe Ingredients</h3>
@@ -66,7 +70,7 @@
 {!! Form::close() !!}
 
 @include('widgets._recipe_ingredient_select_row', ['items' => $items, 'categories' => $categories, 'currencies' => $currencies])
-@include('widgets._recipe_reward_select_row', ['items' => $items, 'currencies' => $currencies, 'tables' => $tables, 'raffles' => $raffles, 'showRecipes' => true])
+@include('widgets._recipe_reward_select_row', ['items' => $items, 'currencies' => $currencies, 'tables' => $tables, 'raffles' => $raffles])
 @include('widgets._recipe_limit_row', ['items' => $items, 'currencies' => $currencies, 'recipes' => $recipes])
 
 @if($recipe->id)

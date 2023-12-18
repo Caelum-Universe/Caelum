@@ -33,9 +33,9 @@
             <div class="tab-pane fade show active" id="info-{{ $image->id }}">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-4"><h5>Class</h5></div>
-                    <div class="col-lg-8 col-md-6 col-8">{!! $image->character->class_id ? $image->character->class->displayName : 'None' !!} 
+                    <div class="col-lg-8 col-md-6 col-8">{!! $image->character->class_id ? $image->character->class->displayName : 'None' !!}
                         @if(Auth::check())
-                        @if(Auth::user()->isStaff || Auth::user()->id == $image->character->user_id && $image->character->class_id == null) 
+                        @if(Auth::user()->isStaff || Auth::user()->id == $image->character->user_id && $image->character->class_id == null)
                         <a href="#" class="btn btn-outline-info btn-sm edit-class ml-1" data-id="{{ $image->character->id }}"><i class="fas fa-cog"></i></a>
                         @endif
                         @endif
@@ -125,7 +125,7 @@
                 @if(Auth::check() && Auth::user()->hasPower('manage_characters'))
                     <div class="mt-3">
                         <a href="#" class="btn btn-outline-info btn-sm edit-features mb-3" data-id="{{ $image->id }}"><i class="fas fa-cog"></i> Edit</a>
-                        @if(Auth::user()->hasPower('view_genomes')) <a href="#" class="btn btn-outline-info btn-sm add-genome mx-1"><i class="fas fa-plus mr-1"></i><i class="fas fa-dna"></i></a> @endif
+                        <a href="#" class="btn btn-outline-info btn-sm add-genome mx-1"><i class="fas fa-plus mr-1"></i><i class="fas fa-dna"></i></a>
                     </div>
                 @endif
 
